@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="En">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Döviz</title>
+  <link rel="icon" href="img/currency.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Genel Sayfa Stilleri */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: #4CAF50;
+      font-weight: 600;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    /* Döviz Kurları */
+    .currency-rates {
+      margin-bottom: 30px;
+    }
+
+    .currency-rates h2 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+
+    .currency-rates ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .currency-rates li {
+      padding: 12px;
+      font-size: 1em;
+      background: #f9f9f9;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    .currency-rates li:hover {
+      transform: scale(1.02);
+      background: #e8f5e9;
+    }
+
+    .currency-rates li strong {
+      color: #333;
+    }
+
+    .currency-rates li span {
+      color: #4CAF50;
+      font-weight: bold;
+    }
+
+    /* Döviz Dönüştürücü */
+    .converter-section {
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .converter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    input, select {
+      padding: 12px;
+      font-size: 1.1em;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+
+    button.convert-btn {
+      padding: 14px;
+      font-size: 1.1em;
+      background: linear-gradient(45deg, #4CAF50, #388E3C);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button.convert-btn:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(45deg, #45A049, #2E7D32);
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: linear-gradient(135deg, #e0f7fa, #a7ffeb);
+      border-radius: 8px;
+      font-size: 1.3em;
+      text-align: center;
+      color: #00695C;
+      font-weight: bold;
+      animation: slideIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-50%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <header>
+      <h1>Döviz Kurları ve Çevirici</h1>
+      <p>Güncel döviz ve dönüşümlerinizi kolayca yapın.</p>
+    </header>
+
+    <!-- Döviz Kurları Listesi -->
+    <section id="currency-rates" class="currency-rates">
+      <h2>Güncel Döviz Kurları</h2>
+      <ul id="currency-rates-list">
+        <!-- Döviz kurları buraya yüklenecek -->
+      </ul>
+    </section>
+
+    <!-- Döviz Dönüştürme Formu -->
+    <section class="converter-section">
+      <div class="converter-form">
+        <div class="input-group">
+          <label for="amount">Miktar</label>
+          <input type="number" id="amount" placeholder="Miktar girin">
+        </div>
+
+        <div class="input-group">
+          <label for="from-currency">Kaynak Para Birimi</label>
+          <select id="from-currency">
+            <!-- Kaynak döviz birimleri -->
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="to-currency">Hedef Para Birimi</label>
+          <select id="to-currency">
+            <!-- Hedef döviz birimleri -->
+          </select>
+        </div>
+
+        <button id="convert" class="convert-btn">Dönüştür</button>
+      </div>
+
+      <!-- Sonuç Alanı -->
+      <div id="result" class="result">
+        <!-- Dönüştürülmüş değer burada gösterilecek -->
+      </div>
+    </section>
+    <center>
+    <h3 style="background-color: #00695C; color: rgb(255, 255, 255);">By Eng. WAEL ASAAD</h3>
+</center>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

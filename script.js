@@ -21,7 +21,8 @@ const currencyNames = {
   'NZD': 'Yeni Zelanda Doları $',
   'RUB': 'Rus Rublesi руб',
   'MXN': 'Meksika Pesosu $',
-  'SYP': 'Suriye Parası ليرة'
+  'SYP': 'Suriye Parası ليرة',
+  'EGP': 'Mısır Lirası جنيه'
 };
 
 // Döviz Kurlarını Almak
@@ -49,7 +50,7 @@ function updateCurrencyRates(data) {
   let ratesHTML = '<ul>';
 
   // Popüler döviz kurlarını buraya ekliyoruz (USD, EUR, GBP vb.)
-  const popularCurrencies = ['USD', 'EUR', 'GBP', 'AUD', 'CAD', 'SAR', 'AED', 'JPY', 'INR', 'CHF', 'CNY', 'NZD', 'RUB', 'MXN','SYP'];
+  const popularCurrencies = ['USD', 'EUR', 'GBP', 'AUD', 'CAD', 'SAR', 'AED', 'JPY', 'INR', 'CHF', 'CNY', 'NZD', 'RUB', 'MXN','SYP','EGP'];
 
   popularCurrencies.forEach(currency => {
     const rate = rates[currency];
@@ -73,7 +74,7 @@ function updateCurrencyOptions(data) {
   toCurrencySelect.innerHTML = '';
 
   // Popüler dövizler ve TRY'yi ekle
-  const popularCurrencies = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'TRY', 'CNY', 'SAR', 'AED', 'NZD', 'INR', 'RUB', 'MXN','SYP'];
+  const popularCurrencies = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'TRY', 'CNY', 'SAR', 'AED', 'NZD', 'INR', 'RUB', 'MXN','SYP','EGP'];
 
   popularCurrencies.forEach(currency => {
     const optionFrom = document.createElement('option');
